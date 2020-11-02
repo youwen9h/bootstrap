@@ -9,5 +9,11 @@
   "extends": [
     "../../../.eslintrc.json",
     "plugin:jasmine/recommended"
-  ]
+  ],
+  "rules": {
+    "jasmine/expect-single-argument": "off",
+    "jasmine/new-line-before-expect": "off",
+    "jasmine/no-spec-dupes": "off",
+    "jasmine/prefer-toHaveBeenCalledWith": "off"
+  }
 }
