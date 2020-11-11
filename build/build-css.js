@@ -5,10 +5,13 @@ const path = require('path')
 const postcss = require('postcss')
 const glob = require('glob')
 const sass = require('sass')
+const autoprefixer = require('autoprefixer')
 const fiber = require('fibers')
 const Cleancss = require('clean-css')
 
-const postcssConfig = require('./postcss.config')
+const postcssPlugins = [
+  autoprefixer({ cascade: false })
+]
 
 const files = [
   'bootstrap',
@@ -27,10 +30,14 @@ files.forEach(filename => {
     outFile: `./dist/css/${filename}.css`
   }, (error, css) => {
     // Fix postcss to use and output sourcemaps
-    postcss(postcssConfig)
-      .process(css.css, { from: `./dist/css/${filename}.css` })
+    postcss(postcssPlugins)
+      .process(css.css, {
+        from: `./dist/css/${filename}.css`,
+        map: `./dist/css/${filename}.css.map`
+      })
       .then(result => {
         fs.writeFile(`./dist/css/${filename}.css`, result.css, () => true)
+        fs.writeFile(`./dist/css/${filename}.css.map`, result.map.toString(), () => true)
         fs.writeFile(`./dist/css/${filename}.min.css`, new Cleancss().minify(result.css).styles, () => true)
       })
   })
@@ -40,7 +47,7 @@ files.forEach(filename => {
 glob('./site/content/**/*.css', {}, (error, files) => {
   files.forEach(file => {
     fs.readFile(file, (err, css) => {
-      postcss(postcssConfig)
+      postcss(postcssPlugins)
         .process(css, { from: file, to: file })
         .then(result => {
           if (css.toString('utf8') !== result.css) {
