@@ -264,9 +264,9 @@ $(function () {
     })
 
     $scrollspy.one('scroll', function () {
-      assert.equal($section.find('#one-link').hasClass('active'), false, '"active" class removed from first section')
+      assert.strictEqual($section.find('#one-link').hasClass('active'), false, '"active" class removed from first section')
       assert.ok($section.find('#two-link').hasClass('active'), '"active" class on middle section')
-      assert.equal($section.find('#three-link').hasClass('active'), false, '"active" class not on last section')
+      assert.strictEqual($section.find('#three-link').hasClass('active'), false, '"active" class not on last section')
       done()
     })
 

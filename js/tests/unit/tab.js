@@ -372,12 +372,12 @@ $(function () {
     $(tabsHTML).appendTo('#qunit-fixture')
 
     $('#tabNested2').on('shown.bs.tab', function () {
-      assert.ok($('#x-tab1').hasClass('active'))
+      assert.strictEqual($('#x-tab1').hasClass('active'), true)
       done()
     })
 
     $('#tab1').on('shown.bs.tab', function () {
-      assert.ok($('#x-tab1').hasClass('active'))
+      assert.strictEqual($('#x-tab1').hasClass('active'), true)
       $('#tabNested2').trigger($.Event('click'))
     })
       .trigger($.Event('click'))
@@ -398,15 +398,15 @@ $(function () {
     $(tabsHTML).appendTo('#qunit-fixture')
     $('#tab-profile')
       .on('shown.bs.tab', function () {
-        assert.ok($('#profile').hasClass('fade'))
-        assert.ok($('#profile').hasClass('show'))
+        assert.strictEqual($('#profile').hasClass('fade'), true)
+        assert.strictEqual($('#profile').hasClass('show'), true)
 
         $('#tab-home')
           .on('shown.bs.tab', function () {
-            assert.ok($('#profile').hasClass('fade'))
-            assert.notOk($('#profile').hasClass('show'))
-            assert.ok($('#home').hasClass('fade'))
-            assert.ok($('#home').hasClass('show'))
+            assert.strictEqual($('#profile').hasClass('fade'), true)
+            assert.strictEqual($('#profile').hasClass('show'), false)
+            assert.strictEqual($('#home').hasClass('fade'), true)
+            assert.strictEqual($('#home').hasClass('show'), true)
 
             done()
           })

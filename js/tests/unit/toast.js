@@ -170,7 +170,7 @@ $(function () {
 
     $toast.one('shown.bs.toast', function () {
       setTimeout(function () {
-        assert.ok($toast.hasClass('show'))
+        assert.strictEqual($toast.hasClass('show'), true)
         assert.notStrictEqual(typeof $toast.data('bs.toast'), 'undefined')
 
         $toast.bootstrapToast('dispose')

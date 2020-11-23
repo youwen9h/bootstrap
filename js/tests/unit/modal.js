@@ -113,7 +113,7 @@ $(function () {
         $(this).bootstrapModal('hide')
       })
       .on('hidden.bs.modal', function () {
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         done()
       })
       .bootstrapModal('show')
@@ -130,7 +130,7 @@ $(function () {
         $(this).bootstrapModal('toggle')
       })
       .on('hidden.bs.modal', function () {
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         done()
       })
       .bootstrapModal('toggle')
@@ -147,7 +147,7 @@ $(function () {
         $(this).find('.close').trigger('click')
       })
       .on('hidden.bs.modal', function () {
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         done()
       })
       .bootstrapModal('toggle')
@@ -163,7 +163,7 @@ $(function () {
         $(this).bootstrapModal('hide')
       })
       .on('hidden.bs.modal', function () {
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         done()
       })
       .bootstrapModal('show')
@@ -181,7 +181,7 @@ $(function () {
         $('#modal-test').trigger('click')
       })
       .on('hidden.bs.modal', function () {
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         done()
       })
       .bootstrapModal('show')
@@ -214,7 +214,7 @@ $(function () {
         }))
 
         setTimeout(function () {
-          assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+          assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
           $div.remove()
           done()
         }, 0)
@@ -324,13 +324,13 @@ $(function () {
       })
       .one('hidden.bs.modal', function () {
         // After one open-close cycle
-        assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+        assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
         $(this)
           .one('shown.bs.modal', function () {
             $('#close').trigger('click')
           })
           .one('hidden.bs.modal', function () {
-            assert.equal($('#modal-test').is(':visible'), false, 'modal hidden')
+            assert.strictEqual($('#modal-test').is(':visible'), false, 'modal hidden')
             done()
           })
           .bootstrapModal('show')

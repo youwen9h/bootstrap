@@ -157,9 +157,9 @@ $(function () {
 
     assert.notStrictEqual($('.popover').length, 0, 'popover inserted')
     assert.strictEqual($('.popover .popover-header').text(), '@glebm <3 writing tests', 'title inserted')
-    assert.equal($.contains($('.popover').get(0), title), false, 'title node copied, not moved')
+    assert.strictEqual($.contains($('.popover').get(0), title), false, 'title node copied, not moved')
     assert.strictEqual($('.popover .popover-body').html(), '¯\\_(ツ)_/¯', 'content inserted')
-    assert.equal($.contains($('.popover').get(0), content), false, 'content node copied, not moved')
+    assert.strictEqual($.contains($('.popover').get(0), content), false, 'content node copied, not moved')
   })
 
   QUnit.test('should not duplicate HTML object', function (assert) {
@@ -279,7 +279,7 @@ $(function () {
     $popover.bootstrapPopover('show')
     $popover.bootstrapPopover('dispose')
 
-    assert.equal($popover.hasClass('show'), false, 'popover is hidden')
+    assert.strictEqual($popover.hasClass('show'), false, 'popover is hidden')
     assert.strictEqual(typeof $popover.data('popover'), 'undefined', 'popover does not have data')
     assert.strictEqual($._data($popover[0], 'events').click[0].namespace, 'foo', 'popover still has click.foo')
     assert.ok(!$._data($popover[0], 'events').mouseover && !$._data($popover[0], 'events').mouseout, 'popover does not have any events')
