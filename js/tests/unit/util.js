@@ -129,13 +129,13 @@ $(function () {
     var id = Util.getUID('test')
     var id2 = Util.getUID('test')
 
-    assert.ok(id !== id2, id + ' !== ' + id2)
+    assert.notStrictEqual(id, id2, id + ' !== ' + id2)
 
     id = Util.getUID('test')
     $('<div id="' + id + '"></div>').appendTo($('#qunit-fixture'))
 
     id2 = Util.getUID('test')
-    assert.ok(id !== id2, id + ' !== ' + id2)
+    assert.notStrictEqual(id, id2, id + ' !== ' + id2)
   })
 
   QUnit.test('Util.supportsTransitionEnd should return true', function (assert) {
@@ -166,7 +166,7 @@ $(function () {
 
     var $div = $('<div id="test"></div>').appendTo($('#qunit-fixture'))
     if (!document.documentElement.attachShadow) {
-      assert.strictEqual(null, Util.findShadowRoot($div[0]))
+      assert.strictEqual(Util.findShadowRoot($div[0]), null)
     } else {
       var sandbox = sinon.createSandbox()
 
@@ -175,7 +175,7 @@ $(function () {
         return $div
       })
 
-      assert.strictEqual(null, Util.findShadowRoot($div[0]))
+      assert.strictEqual(Util.findShadowRoot($div[0]), null)
       sandbox.restore()
     }
   })

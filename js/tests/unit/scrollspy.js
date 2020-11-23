@@ -264,9 +264,9 @@ $(function () {
     })
 
     $scrollspy.one('scroll', function () {
-      assert.ok(!$section.find('#one-link').hasClass('active'), '"active" class removed from first section')
+      assert.equal($section.find('#one-link').hasClass('active'), false, '"active" class removed from first section')
       assert.ok($section.find('#two-link').hasClass('active'), '"active" class on middle section')
-      assert.ok(!$section.find('#three-link').hasClass('active'), '"active" class not on last section')
+      assert.equal($section.find('#three-link').hasClass('active'), false, '"active" class not on last section')
       done()
     })
 
@@ -775,8 +775,8 @@ $(function () {
       var $target = $('#div-' + type + 'm-2')
       var scrollspy = $content.data('bs.scrollspy')
 
-      assert.ok(scrollspy._offsets[1] === $target.offset().top, 'offset method with ' + type + ' option')
-      assert.ok(scrollspy._offsets[1] !== $target.position().top, 'position method with ' + type + ' option')
+      assert.strictEqual(scrollspy._offsets[1], $target.offset().top, 'offset method with ' + type + ' option')
+      assert.notStrictEqual(scrollspy._offsets[1], $target.position().top, 'position method with ' + type + ' option')
       $navbar.remove()
       $content.remove()
     }
@@ -822,8 +822,8 @@ $(function () {
       var $target = $('#div-' + type + 'm-2')
       var scrollspy = $content.data('bs.scrollspy')
 
-      assert.ok(scrollspy._offsets[1] !== $target.offset().top, 'offset method with ' + type + ' option')
-      assert.ok(scrollspy._offsets[1] === $target.position().top, 'position method with ' + type + ' option')
+      assert.notStrictEqual(scrollspy._offsets[1], $target.offset().top, 'offset method with ' + type + ' option')
+      assert.strictEqual(scrollspy._offsets[1], $target.position().top, 'position method with ' + type + ' option')
       $navbar.remove()
       $content.remove()
     }
