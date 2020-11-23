@@ -346,7 +346,7 @@ $(function () {
     $tooltip.bootstrapTooltip('dispose')
 
     assert.equal($tooltip.hasClass('show'), false, 'tooltip is hidden')
-    assert.equal($._data($tooltip[0], 'bs.tooltip'), false, 'tooltip does not have data')
+    assert.strictEqual(typeof $._data($tooltip[0], 'bs.tooltip'), 'undefined', 'tooltip does not have data')
     assert.strictEqual($._data($tooltip[0], 'events').click[0].namespace, 'foo', 'tooltip still has click.foo')
     assert.ok(!$._data($tooltip[0], 'events').mouseover && !$._data($tooltip[0], 'events').mouseout, 'tooltip does not have hover events')
   })

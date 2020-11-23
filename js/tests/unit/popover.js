@@ -280,7 +280,7 @@ $(function () {
     $popover.bootstrapPopover('dispose')
 
     assert.equal($popover.hasClass('show'), false, 'popover is hidden')
-    assert.equal($popover.data('popover'), false, 'popover does not have data')
+    assert.strictEqual(typeof $popover.data('popover'), 'undefined', 'popover does not have data')
     assert.strictEqual($._data($popover[0], 'events').click[0].namespace, 'foo', 'popover still has click.foo')
     assert.ok(!$._data($popover[0], 'events').mouseover && !$._data($popover[0], 'events').mouseout, 'popover does not have any events')
   })
