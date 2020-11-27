@@ -207,7 +207,7 @@ $(function () {
     var $div = $('<div id="modal-test"/>')
     $div
       .on('shown.bs.modal', function () {
-        assert.true($('#modal-test').length > 0, 'modal inserted into dom')
+        assert.notStrictEqual($('#modal-test').length, 0, 'modal inserted into dom')
         assert.true($('#modal-test').is(':visible'), 'modal visible')
         $div.trigger($.Event('keydown', {
           which: 27
@@ -229,7 +229,7 @@ $(function () {
     var $div = $('<div id="modal-test"/>')
     $div
       .on('shown.bs.modal', function () {
-        assert.true($('#modal-test').length > 0, 'modal inserted into dom')
+        assert.notStrictEqual($('#modal-test').length, 0, 'modal inserted into dom')
         assert.true($('#modal-test').is(':visible'), 'modal visible')
         $div.trigger($.Event('keyup', {
           which: 27

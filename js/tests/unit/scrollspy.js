@@ -226,7 +226,7 @@ $(function () {
         target: $('.container')
       })
 
-    assert.true($('.container').attr('id').length > 0, '`target` has an ID attribute')
+    assert.notStrictEqual($('.container').attr('id').length, 0, '`target` has an ID attribute')
 
     $scrollspy.one('scroll', function () {
       assert.true($section.hasClass('active'), '"active" class still on root node')
