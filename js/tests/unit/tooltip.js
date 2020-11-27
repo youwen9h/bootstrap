@@ -47,7 +47,7 @@ $(function () {
 
   QUnit.test('should expose default settings', function (assert) {
     assert.expect(1)
-    assert.ok($.fn.bootstrapTooltip.Constructor.Default, 'defaults is defined')
+    assert.ok($.fn.bootstrapTooltip.Constructor.Default, 'defaults are defined')
   })
 
   QUnit.test('should empty title attribute', function (assert) {
