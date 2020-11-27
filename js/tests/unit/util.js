@@ -76,7 +76,7 @@ $(function () {
 
     assert.strictEqual(Util.isElement($div), 1)
     assert.strictEqual(Util.isElement($div[0]), 1)
-    assert.strictEqual(typeof Util.isElement({}) === 'undefined', true)
+    assert.strictEqual(typeof Util.isElement({}), 'undefined')
   })
 
   QUnit.test('Util.getTransitionDurationFromElement should accept transition durations in milliseconds', function (assert) {
@@ -140,7 +140,7 @@ $(function () {
 
   QUnit.test('Util.supportsTransitionEnd should return true', function (assert) {
     assert.expect(1)
-    assert.ok(Util.supportsTransitionEnd())
+    assert.true(Util.supportsTransitionEnd())
   })
 
   QUnit.test('Util.findShadowRoot should find the shadow DOM root', function (assert) {

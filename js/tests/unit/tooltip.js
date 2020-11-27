@@ -41,7 +41,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $tooltip = $el.bootstrapTooltip()
-    assert.ok($tooltip instanceof $, 'returns jquery collection')
+    assert.true($tooltip instanceof $, 'returns jquery collection')
     assert.strictEqual($tooltip[0], $el[0], 'collection contains element')
   })
 
@@ -73,7 +73,7 @@ $(function () {
 
     assert.strictEqual($('#' + id).length, 1, 'has a unique id')
     assert.strictEqual($('.tooltip').attr('aria-describedby'), $trigger.attr('id'), 'tooltip id and aria-describedby on trigger match')
-    assert.strictEqual($trigger[0].hasAttribute('aria-describedby'), true, 'trigger has aria-describedby')
+    assert.true($trigger[0].hasAttribute('aria-describedby'), 'trigger has aria-describedby')
   })
 
   QUnit.test('should remove aria-describedby from trigger on hide', function (assert) {
@@ -85,11 +85,11 @@ $(function () {
 
     $trigger
       .one('shown.bs.tooltip', function () {
-        assert.strictEqual($trigger[0].hasAttribute('aria-describedby'), true, 'trigger has aria-describedby')
+        assert.true($trigger[0].hasAttribute('aria-describedby'), 'trigger has aria-describedby')
         $trigger.bootstrapTooltip('hide')
       })
       .one('hidden.bs.tooltip', function () {
-        assert.strictEqual($trigger[0].hasAttribute('aria-describedby'), false, 'trigger does not have aria-describedby')
+        assert.false($trigger[0].hasAttribute('aria-describedby'), 'trigger does not have aria-describedby')
         done()
       })
       .bootstrapTooltip('show')
@@ -118,7 +118,7 @@ $(function () {
 
     $tooltip
       .one('shown.bs.tooltip', function () {
-        assert.ok($('.tooltip').is('.fade.bs-tooltip-bottom.show'), 'has correct classes applied')
+        assert.true($('.tooltip').is('.fade.bs-tooltip-bottom.show'), 'has correct classes applied')
 
         $tooltip.bootstrapTooltip('hide')
       })
@@ -164,7 +164,7 @@ $(function () {
       .one('shown.bs.tooltip', function () {
         assert.notStrictEqual($('.tooltip').length, 0, 'tooltip inserted')
         assert.strictEqual($('.tooltip').text(), '<3 writing tests', 'title inserted')
-        assert.strictEqual($.contains($('.tooltip').get(0), title), false, 'title node copied, not moved')
+        assert.false($.contains($('.tooltip').get(0), title), 'title node copied, not moved')
         done()
       })
       .bootstrapTooltip('show')
@@ -202,7 +202,7 @@ $(function () {
 
     $tooltip
       .one('shown.bs.tooltip', function () {
-        assert.strictEqual($('.tooltip').hasClass('some-class'), true, 'custom class is present')
+        assert.true($('.tooltip').hasClass('some-class'), 'custom class is present')
         $tooltip.bootstrapTooltip('hide')
       })
       .one('hidden.bs.tooltip', function () {
@@ -344,7 +344,7 @@ $(function () {
     $tooltip.bootstrapTooltip('show')
     $tooltip.bootstrapTooltip('dispose')
 
-    assert.strictEqual($tooltip.hasClass('show'), false, 'tooltip is hidden')
+    assert.false($tooltip.hasClass('show'), 'tooltip is hidden')
     assert.strictEqual(typeof $._data($tooltip[0], 'bs.tooltip'), 'undefined', 'tooltip does not have data')
     assert.strictEqual($._data($tooltip[0], 'events').click[0].namespace, 'foo', 'tooltip still has click.foo')
     assert.ok(!$._data($tooltip[0], 'events').mouseover && !$._data($tooltip[0], 'events').mouseout, 'tooltip does not have hover events')
@@ -360,7 +360,7 @@ $(function () {
   //     })
 
   //   $div.find('a').trigger('click')
-  //   assert.ok($('.tooltip').is('.fade.in'), 'tooltip is faded in')
+  //   assert.true($('.tooltip').is('.fade.in'), 'tooltip is faded in')
 
   //   $div.find('a').trigger('click')
   //   assert.strictEqual($div.data('bs.tooltip').tip.parentNode, null, 'tooltip removed')
@@ -375,7 +375,7 @@ $(function () {
       })
       .bootstrapTooltip('toggle')
 
-    assert.ok($('.tooltip').is('.fade.show'), 'tooltip is faded active')
+    assert.true($('.tooltip').is('.fade.show'), 'tooltip is faded active')
   })
 
   QUnit.test('should hide previously shown tooltip when toggle is called on tooltip', function (assert) {
@@ -477,7 +477,7 @@ $(function () {
       })
       .on('inserted.bs.tooltip', function () {
         var $tooltip = $($(this).data('bs.tooltip').tip)
-        assert.strictEqual($tooltip.hasClass('bs-tooltip-right'), true)
+        assert.true($tooltip.hasClass('bs-tooltip-right'))
         assert.strictEqual(typeof $tooltip.attr('style'), 'undefined')
         $styles.remove()
         done()
@@ -564,7 +564,7 @@ $(function () {
       passed = false
     }
 
-    assert.ok(passed, '.tooltip(\'show\') should not throw an error if element no longer is in dom')
+    assert.true(passed, '.tooltip(\'show\') should not throw an error if element no longer is in dom')
   })
 
   QUnit.test('should show tooltip if leave event hasn\'t occurred before delay expires', function (assert) {
@@ -578,11 +578,11 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '100ms: tooltip is not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '100ms: tooltip is not faded active')
     }, 100)
 
     setTimeout(function () {
-      assert.ok($('.tooltip').is('.fade.show'), '200ms: tooltip is faded active')
+      assert.true($('.tooltip').is('.fade.show'), '200ms: tooltip is faded active')
       done()
     }, 200)
 
@@ -600,12 +600,12 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '100ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '100ms: tooltip not faded active')
       $tooltip.trigger('mouseout')
     }, 100)
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '200ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '200ms: tooltip not faded active')
       done()
     }, 200)
 
@@ -626,16 +626,16 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.ok($('.tooltip').is('.fade.show'), '1ms: tooltip faded active')
+      assert.true($('.tooltip').is('.fade.show'), '1ms: tooltip faded active')
       $tooltip.trigger('mouseout')
 
       setTimeout(function () {
-        assert.ok($('.tooltip').is('.fade.show'), '100ms: tooltip still faded active')
+        assert.true($('.tooltip').is('.fade.show'), '100ms: tooltip still faded active')
         $tooltip.trigger('mouseenter')
       }, 100)
 
       setTimeout(function () {
-        assert.ok($('.tooltip').is('.fade.show'), '200ms: tooltip still faded active')
+        assert.true($('.tooltip').is('.fade.show'), '200ms: tooltip still faded active')
         done()
       }, 200)
     }, 0)
@@ -654,12 +654,12 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '100ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '100ms: tooltip not faded active')
       $tooltip.trigger('mouseout')
     }, 100)
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '200ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '200ms: tooltip not faded active')
       done()
     }, 200)
 
@@ -680,12 +680,12 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '100ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '100ms: tooltip not faded active')
       $tooltip.trigger('mouseout')
     }, 100)
 
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').is('.fade.show'), false, '250ms: tooltip not faded active')
+      assert.false($('.tooltip').is('.fade.show'), '250ms: tooltip not faded active')
       done()
     }, 250)
 
@@ -706,16 +706,16 @@ $(function () {
       })
 
     setTimeout(function () {
-      assert.ok($($tooltip.data('bs.tooltip').tip).is('.fade.show'), '1ms: tooltip faded active')
+      assert.true($($tooltip.data('bs.tooltip').tip).is('.fade.show'), '1ms: tooltip faded active')
 
       $tooltip.trigger('mouseout')
 
       setTimeout(function () {
-        assert.ok($($tooltip.data('bs.tooltip').tip).is('.fade.show'), '100ms: tooltip still faded active')
+        assert.true($($tooltip.data('bs.tooltip').tip).is('.fade.show'), '100ms: tooltip still faded active')
       }, 100)
 
       setTimeout(function () {
-        assert.strictEqual($($tooltip.data('bs.tooltip').tip).is('.show'), false, '200ms: tooltip removed')
+        assert.false($($tooltip.data('bs.tooltip').tip).is('.show'), '200ms: tooltip removed')
         done()
       }, 200)
     }, 0)
@@ -837,7 +837,7 @@ $(function () {
       ['mouseenter', 'focusin', 'click', 'click', 'mouseleave', 'focusout']
     ]
 
-    assert.strictEqual(showingTooltip(), false)
+    assert.false(showingTooltip())
 
     $.each(tests, function (idx, triggers) {
       for (var i = 0, len = triggers.length; i < len; i++) {
@@ -864,13 +864,13 @@ $(function () {
     }
 
     $el.trigger('click')
-    assert.ok(showingTooltip(), 'tooltip is faded in')
+    assert.true(showingTooltip(), 'tooltip is faded in')
 
     $el.bootstrapTooltip('hide')
-    assert.strictEqual(showingTooltip(), false, 'tooltip was faded out')
+    assert.false(showingTooltip(), 'tooltip was faded out')
 
     $el.trigger('click')
-    assert.ok(showingTooltip(), 'tooltip is faded in again')
+    assert.true(showingTooltip(), 'tooltip is faded in again')
   })
 
   QUnit.test('should hide tooltip when their containing modal is closed', function (assert) {
@@ -953,8 +953,8 @@ $(function () {
       .on('hidden.bs.tooltip', function () {
         var tooltip = $el.data('bs.tooltip')
         var $tooltip = $(tooltip.getTipElement())
-        assert.ok($tooltip.hasClass('tooltip'))
-        assert.ok($tooltip.hasClass('fade'))
+        assert.true($tooltip.hasClass('tooltip'))
+        assert.true($tooltip.hasClass('fade'))
         done()
       })
 
@@ -984,14 +984,14 @@ $(function () {
       .appendTo('#qunit-fixture')
       .bootstrapTooltip()
       .on('shown.bs.tooltip', function () {
-        assert.strictEqual($('.tooltip').hasClass('show'), true)
+        assert.true($('.tooltip').hasClass('show'))
         done()
       })
 
     $trigger.bootstrapTooltip('disable')
     $trigger.trigger($.Event('click'))
     setTimeout(function () {
-      assert.strictEqual($('.tooltip').length === 0, true)
+      assert.strictEqual($('.tooltip').length, 0)
       $trigger.bootstrapTooltip('enable')
       $trigger.trigger($.Event('click'))
     }, 200)
@@ -1010,7 +1010,7 @@ $(function () {
 
     var spyPopper = sinon.spy(tooltip._popper, 'scheduleUpdate')
     tooltip.update()
-    assert.ok(spyPopper.called)
+    assert.true(spyPopper.called)
   })
 
   QUnit.test('should not call Popper to update', function (assert) {
@@ -1058,15 +1058,15 @@ $(function () {
 
     var tooltip = $tooltip.data('bs.tooltip')
 
-    assert.strictEqual(tooltip._isEnabled, true)
+    assert.true(tooltip._isEnabled)
 
     tooltip.toggleEnabled()
 
-    assert.strictEqual(tooltip._isEnabled, false)
+    assert.false(tooltip._isEnabled)
 
     tooltip.toggleEnabled()
 
-    assert.strictEqual(tooltip._isEnabled, true)
+    assert.true(tooltip._isEnabled)
   })
 
   QUnit.test('should create offset modifier correctly when offset option is a function', function (assert) {
@@ -1116,7 +1116,7 @@ $(function () {
       })
 
     var tooltip = $trigger.data('bs.tooltip')
-    assert.strictEqual(tooltip.config.sanitize, false)
+    assert.false(tooltip.config.sanitize)
   })
 
   QUnit.test('should sanitize template by removing disallowed tags', function (assert) {
@@ -1263,7 +1263,7 @@ $(function () {
 
     var tooltip = $trigger.data('bs.tooltip')
 
-    assert.strictEqual(tooltip.config.sanitize, true)
+    assert.true(tooltip.config.sanitize)
   })
 
   QUnit.test('should allow to pass config to Popper with `popperConfig`', function (assert) {
@@ -1293,8 +1293,8 @@ $(function () {
 
     var tooltip = $('.tooltip')
 
-    assert.strictEqual(tooltip.hasClass('a b'), true)
-    assert.strictEqual(tooltip.hasClass('tooltip fade bs-tooltip-top show'), true)
+    assert.true(tooltip.hasClass('a b'))
+    assert.true(tooltip.hasClass('tooltip fade bs-tooltip-top show'))
   })
 
   QUnit.test('additional classes can be applied via config string', function (assert) {
@@ -1309,8 +1309,8 @@ $(function () {
 
     var tooltip = $('.tooltip')
 
-    assert.strictEqual(tooltip.hasClass('a b'), true)
-    assert.strictEqual(tooltip.hasClass('tooltip fade bs-tooltip-top show'), true)
+    assert.true(tooltip.hasClass('a b'))
+    assert.true(tooltip.hasClass('tooltip fade bs-tooltip-top show'))
   })
 
   QUnit.test('additional classes can be applied via function', function (assert) {
@@ -1329,7 +1329,7 @@ $(function () {
 
     var tooltip = $('.tooltip')
 
-    assert.strictEqual(tooltip.hasClass('a b'), true)
-    assert.strictEqual(tooltip.hasClass('tooltip fade bs-tooltip-top show'), true)
+    assert.true(tooltip.hasClass('a b'))
+    assert.true(tooltip.hasClass('tooltip fade bs-tooltip-top show'))
   })
 })
