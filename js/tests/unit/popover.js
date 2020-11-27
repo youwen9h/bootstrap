@@ -265,7 +265,7 @@ $(function () {
   })
 
   QUnit.test('should destroy popover', function (assert) {
-    assert.expect(7)
+    assert.expect(9)
     var $popover = $('<div/>')
       .bootstrapPopover({
         trigger: 'hover'
@@ -273,7 +273,8 @@ $(function () {
       .on('click.foo', $.noop)
 
     assert.ok($popover.data('bs.popover'), 'popover has data')
-    assert.ok($._data($popover[0], 'events').mouseover && $._data($popover[0], 'events').mouseout, 'popover has hover event')
+    assert.ok($._data($popover[0], 'events').mouseover, 'popover has mouseover event')
+    assert.ok($._data($popover[0], 'events').mouseout, 'popover has mouseout event')
     assert.strictEqual($._data($popover[0], 'events').click[0].namespace, 'foo', 'popover has extra click.foo event')
 
     $popover.bootstrapPopover('show')
@@ -282,7 +283,8 @@ $(function () {
     assert.false($popover.hasClass('show'), 'popover is hidden')
     assert.strictEqual(typeof $popover.data('popover'), 'undefined', 'popover does not have data')
     assert.strictEqual($._data($popover[0], 'events').click[0].namespace, 'foo', 'popover still has click.foo')
-    assert.ok(!$._data($popover[0], 'events').mouseover && !$._data($popover[0], 'events').mouseout, 'popover does not have any events')
+    assert.notOk($._data($popover[0], 'events').mouseover, 'popover does not have mouseover event')
+    assert.notOk($._data($popover[0], 'events').mouseout, 'popover does not have mouseout event')
   })
 
   QUnit.test('should render popover element using delegated selector', function (assert) {

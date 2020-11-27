@@ -332,13 +332,14 @@ $(function () {
   })
 
   QUnit.test('should destroy tooltip', function (assert) {
-    assert.expect(7)
+    assert.expect(9)
     var $tooltip = $('<div/>')
       .bootstrapTooltip()
       .on('click.foo', function () {})
 
     assert.ok($tooltip.data('bs.tooltip'), 'tooltip has data')
-    assert.ok($._data($tooltip[0], 'events').mouseover && $._data($tooltip[0], 'events').mouseout, 'tooltip has hover events')
+    assert.ok($._data($tooltip[0], 'events').mouseover, 'tooltip has mouseover event')
+    assert.ok($._data($tooltip[0], 'events').mouseout, 'tooltip has mouseout event')
     assert.strictEqual($._data($tooltip[0], 'events').click[0].namespace, 'foo', 'tooltip has extra click.foo event')
 
     $tooltip.bootstrapTooltip('show')
@@ -347,7 +348,8 @@ $(function () {
     assert.false($tooltip.hasClass('show'), 'tooltip is hidden')
     assert.strictEqual(typeof $._data($tooltip[0], 'bs.tooltip'), 'undefined', 'tooltip does not have data')
     assert.strictEqual($._data($tooltip[0], 'events').click[0].namespace, 'foo', 'tooltip still has click.foo')
-    assert.ok(!$._data($tooltip[0], 'events').mouseover && !$._data($tooltip[0], 'events').mouseout, 'tooltip does not have hover events')
+    assert.notOk($._data($tooltip[0], 'events').mouseover, 'tooltip does not have mouseover event')
+    assert.notOk($._data($tooltip[0], 'events').mouseout, 'tooltip does not have mouseout event')
   })
 
   QUnit.test('should show tooltip when toggle is called', function (assert) {
