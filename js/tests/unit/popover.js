@@ -283,8 +283,8 @@ $(function () {
     assert.false($popover.hasClass('show'), 'popover is hidden')
     assert.strictEqual(typeof $popover.data('popover'), 'undefined', 'popover does not have data')
     assert.strictEqual($._data($popover[0], 'events').click[0].namespace, 'foo', 'popover still has click.foo')
-    assert.notOk($._data($popover[0], 'events').mouseover, 'popover does not have mouseover event')
-    assert.notOk($._data($popover[0], 'events').mouseout, 'popover does not have mouseout event')
+    assert.strictEqual(typeof $._data($popover[0], 'events').mouseover, 'undefined', 'popover does not have mouseover event')
+    assert.strictEqual(typeof $._data($popover[0], 'events').mouseout, 'undefined', 'popover does not have mouseout event')
   })
 
   QUnit.test('should render popover element using delegated selector', function (assert) {

@@ -553,10 +553,10 @@ $(function () {
 
     $dropdown.parent('.dropdown')
       .on('hide.bs.dropdown', function (e) {
-        assert.notOk(e.clickEvent)
+        assert.strictEqual(typeof e.clickEvent, 'undefined')
       })
       .on('hidden.bs.dropdown', function (e) {
-        assert.notOk(e.clickEvent)
+        assert.strictEqual(typeof e.clickEvent, 'undefined')
       })
       .on('shown.bs.dropdown', function () {
         assert.ok(true, 'shown was fired')
@@ -1163,7 +1163,7 @@ $(function () {
 
     dropdown.update()
 
-    assert.notOk(dropdown._popper)
+    assert.strictEqual(dropdown._popper, null)
     assert.true(spyDetectNavbar.called)
   })
 
@@ -1216,7 +1216,7 @@ $(function () {
 
     var dropdown = $dropdown.data('bs.dropdown')
 
-    assert.notOk(dropdown._popper)
+    assert.strictEqual(dropdown._popper, null)
     assert.notStrictEqual(dropdown._menu, null)
     assert.notStrictEqual(dropdown._element, null)
 

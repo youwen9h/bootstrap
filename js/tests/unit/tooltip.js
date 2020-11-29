@@ -348,8 +348,8 @@ $(function () {
     assert.false($tooltip.hasClass('show'), 'tooltip is hidden')
     assert.strictEqual(typeof $._data($tooltip[0], 'bs.tooltip'), 'undefined', 'tooltip does not have data')
     assert.strictEqual($._data($tooltip[0], 'events').click[0].namespace, 'foo', 'tooltip still has click.foo')
-    assert.notOk($._data($tooltip[0], 'events').mouseover, 'tooltip does not have mouseover event')
-    assert.notOk($._data($tooltip[0], 'events').mouseout, 'tooltip does not have mouseout event')
+    assert.strictEqual(typeof $._data($tooltip[0], 'events').mouseover, 'undefined', 'tooltip does not have mouseover event')
+    assert.strictEqual(typeof $._data($tooltip[0], 'events').mouseout, 'undefined', 'tooltip does not have mouseout event')
   })
 
   QUnit.test('should show tooltip when toggle is called', function (assert) {
