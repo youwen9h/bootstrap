@@ -55,7 +55,7 @@ class Alert extends BaseComponent {
     const rootElement = element ? this._getRootElement(element) : this._element
     const customEvent = this._triggerCloseEvent(rootElement)
 
-    if (customEvent === null || customEvent.defaultPrevented) {
+    if (!customEvent || customEvent.defaultPrevented) {
       return
     }
 

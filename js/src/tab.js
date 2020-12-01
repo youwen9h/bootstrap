@@ -91,7 +91,7 @@ class Tab extends BaseComponent {
       relatedTarget: previous
     })
 
-    if (showEvent.defaultPrevented || (hideEvent !== null && hideEvent.defaultPrevented)) {
+    if (showEvent.defaultPrevented || (hideEvent && hideEvent.defaultPrevented)) {
       return
     }
 

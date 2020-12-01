@@ -248,9 +248,9 @@ class Tooltip extends BaseComponent {
     if (this.isWithContent() && this._isEnabled) {
       const showEvent = EventHandler.trigger(this._element, this.constructor.Event.SHOW)
       const shadowRoot = findShadowRoot(this._element)
-      const isInTheDom = shadowRoot === null ?
-        this._element.ownerDocument.documentElement.contains(this._element) :
-        shadowRoot.contains(this._element)
+      const isInTheDom = shadowRoot ?
+        shadowRoot.contains(this._element) :
+        this._element.ownerDocument.documentElement.contains(this._element)
 
       if (showEvent.defaultPrevented || !isInTheDom) {
         return
@@ -406,7 +406,7 @@ class Tooltip extends BaseComponent {
   }
 
   setElementContent(element, content) {
-    if (element === null) {
+    if (!element) {
       return
     }
 
@@ -734,7 +734,8 @@ class Tooltip extends BaseComponent {
   _cleanTipClass() {
     const tip = this.getTipElement()
     const tabClass = tip.getAttribute('class').match(BSCLS_PREFIX_REGEX)
-    if (tabClass !== null && tabClass.length > 0) {
+
+    if (tabClass && tabClass.length > 0) {
       tabClass.map(token => token.trim())
         .forEach(tClass => tip.classList.remove(tClass))
     }
