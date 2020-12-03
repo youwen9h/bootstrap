@@ -119,10 +119,9 @@ class Carousel extends BaseComponent {
 
     this._config = this._getConfig(config)
     this._indicatorsElement = SelectorEngine.findOne(SELECTOR_INDICATORS, this._element)
-    /* eslint-disable compat/compat */
-    this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0
-    this._pointerEvent = Boolean(window.PointerEvent)
-    /* eslint-enable compat/compat */
+    /* eslint-disable-next-line compat/compat */
+    this._touchSupported = 'ontouchstart' in window || (('maxTouchPoints' in navigator) && (navigator.maxTouchPoints > 0))
+    this._pointerEvent = PointerEvent in window
 
     this._addEventListeners()
   }
