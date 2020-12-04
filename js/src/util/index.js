@@ -204,6 +204,8 @@ const defineJQueryPlugin = (name, plugin) => {
   })
 }
 
+const isTouchEnabledDevice = 'ontouchstart' in document.documentElement
+
 export {
   TRANSITION_END,
   getUID,
@@ -221,5 +223,6 @@ export {
   getjQuery,
   onDOMContentLoaded,
   isRTL,
-  defineJQueryPlugin
+  defineJQueryPlugin,
+  isTouchEnabledDevice
 }
