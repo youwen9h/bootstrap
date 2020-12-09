@@ -182,7 +182,7 @@ class Dropdown extends BaseComponent {
     // empty mouseover listeners to the body's immediate children;
     // only needed because of broken event delegation on iOS
     // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-    if (isTouchEnabledDevice && !parent.closest(SELECTOR_NAVBAR_NAV)) {
+    if (isTouchEnabledDevice() && !parent.closest(SELECTOR_NAVBAR_NAV)) {
       [].concat(...document.body.children).forEach(element => {
         EventHandler.on(element, 'mouseover', null, noop)
       })
@@ -382,7 +382,7 @@ class Dropdown extends BaseComponent {
 
       // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
-      if (isTouchEnabledDevice) {
+      if (isTouchEnabledDevice()) {
         [].concat(...document.body.children).forEach(element => {
           EventHandler.off(element, 'mouseover', null, noop)
         })
