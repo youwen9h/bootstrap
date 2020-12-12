@@ -186,7 +186,7 @@ const onDOMContentLoaded = callback => {
   }
 }
 
-const isRTL = document.documentElement.dir === 'rtl'
+const isRTL = () => document.documentElement.dir === 'rtl'
 
 const defineJQueryPlugin = (name, plugin) => {
   onDOMContentLoaded(() => {
