@@ -96,6 +96,8 @@ const SELECTOR_DATA_RIDE = '[data-bs-ride="carousel"]'
 const POINTER_TYPE_TOUCH = 'touch'
 const POINTER_TYPE_PEN = 'pen'
 
+const IS_RTL = isRTL()
+
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -251,7 +253,7 @@ class Carousel extends BaseComponent {
 
     // swipe left
     if (direction > 0) {
-      if (isRTL()) {
+      if (IS_RTL) {
         this.next()
       } else {
         this.prev()
@@ -260,7 +262,7 @@ class Carousel extends BaseComponent {
 
     // swipe right
     if (direction < 0) {
-      if (isRTL()) {
+      if (IS_RTL) {
         this.prev()
       } else {
         this.next()
@@ -348,14 +350,14 @@ class Carousel extends BaseComponent {
 
     if (event.key === ARROW_LEFT_KEY) {
       event.preventDefault()
-      if (isRTL()) {
+      if (IS_RTL) {
         this.next()
       } else {
         this.prev()
       }
     } else if (event.key === ARROW_RIGHT_KEY) {
       event.preventDefault()
-      if (isRTL()) {
+      if (IS_RTL) {
         this.prev()
       } else {
         this.next()
