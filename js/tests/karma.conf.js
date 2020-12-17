@@ -16,7 +16,6 @@ const { env } = process
 const browserStack = env.BROWSER === 'true'
 const debug = env.DEBUG === 'true'
 const jQueryTest = env.JQUERY === 'true'
-
 const frameworks = [
   'jasmine'
 ]
