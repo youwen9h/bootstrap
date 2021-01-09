@@ -1,7 +1,7 @@
-import SelectorEngine from '../../../src/dom/selector-engine'
+import SelectorEngine from '../../../src/dom/selector-engine.js'
 
 /** Test helpers */
-import { getFixture, clearFixture } from '../../helpers/fixture'
+import { getFixture, clearFixture } from '../../helpers/fixture.js'
 
 describe('SelectorEngine', () => {
   let fixtureEl

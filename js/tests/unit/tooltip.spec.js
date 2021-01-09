@@ -1,9 +1,9 @@
-import Tooltip from '../../src/tooltip'
-import EventHandler from '../../src/dom/event-handler'
-import { noop } from '../../src/util/index'
+import Tooltip from '../../src/tooltip.js'
+import EventHandler from '../../src/dom/event-handler.js'
+import { noop } from '../../src/util/index.js'
 
 /** Test helpers */
-import { getFixture, clearFixture, jQueryMock, createEvent } from '../helpers/fixture'
+import { getFixture, clearFixture, jQueryMock, createEvent } from '../helpers/fixture.js'
 
 describe('Tooltip', () => {
   let fixtureEl

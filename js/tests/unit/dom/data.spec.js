@@ -1,7 +1,7 @@
-import Data from '../../../src/dom/data'
+import Data from '../../../src/dom/data.js'
 
 /** Test helpers */
-import { getFixture, clearFixture } from '../../helpers/fixture'
+import { getFixture, clearFixture } from '../../helpers/fixture.js'
 
 describe('Data', () => {
   let fixtureEl

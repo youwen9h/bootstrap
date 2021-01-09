@@ -1,8 +1,8 @@
-import Modal from '../../src/modal'
-import EventHandler from '../../src/dom/event-handler'
+import Modal from '../../src/modal.js'
+import EventHandler from '../../src/dom/event-handler.js'
 
 /** Test helpers */
-import { getFixture, clearFixture, createEvent, jQueryMock } from '../helpers/fixture'
+import { getFixture, clearFixture, createEvent, jQueryMock } from '../helpers/fixture.js'
 
 describe('Modal', () => {
   let fixtureEl

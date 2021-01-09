@@ -5,10 +5,10 @@
  * --------------------------------------------------------------------------
  */
 
-import { defineJQueryPlugin } from './util/index'
-import Data from './dom/data'
-import SelectorEngine from './dom/selector-engine'
-import Tooltip from './tooltip'
+import { defineJQueryPlugin } from './util/index.js'
+import Data from './dom/data.js'
+import SelectorEngine from './dom/selector-engine.js'
+import Tooltip from './tooltip.js'
 
 /**
  * ------------------------------------------------------------------------

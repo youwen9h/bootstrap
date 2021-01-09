@@ -5,10 +5,10 @@
  * --------------------------------------------------------------------------
  */
 
-import { defineJQueryPlugin } from './util/index'
-import Data from './dom/data'
-import EventHandler from './dom/event-handler'
-import BaseComponent from './base-component'
+import { defineJQueryPlugin } from './util/index.js'
+import Data from './dom/data.js'
+import EventHandler from './dom/event-handler.js'
+import BaseComponent from './base-component.js'
 
 /**
  * ------------------------------------------------------------------------

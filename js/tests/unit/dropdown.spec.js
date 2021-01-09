@@ -1,8 +1,8 @@
-import Dropdown from '../../src/dropdown'
-import EventHandler from '../../src/dom/event-handler'
+import Dropdown from '../../src/dropdown.js'
+import EventHandler from '../../src/dom/event-handler.js'
 
 /** Test helpers */
-import { getFixture, clearFixture, createEvent, jQueryMock } from '../helpers/fixture'
+import { getFixture, clearFixture, createEvent, jQueryMock } from '../helpers/fixture.js'
 
 describe('Dropdown', () => {
   let fixtureEl
