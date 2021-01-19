@@ -143,8 +143,6 @@ const domObjects = new Set([
 ])
 
 const build = async plugin => {
-  console.log(`Building ${plugin} plugin...`)
-
   const { external, globals } = getConfigByPluginKey(plugin)
   const pluginFilename = path.basename(bsPlugins[plugin])
   let pluginPath = rootPath
@@ -156,6 +154,8 @@ const build = async plugin => {
   if (domObjects.has(plugin)) {
     pluginPath = `${rootPath}/dom/`
   }
+
+  console.log(`Building ${plugin} plugin...`)
 
   const bundle = await rollup.rollup({
     input: bsPlugins[plugin],
@@ -171,6 +171,8 @@ const build = async plugin => {
     globals,
     file: path.resolve(__dirname, `${pluginPath}/${pluginFilename}`)
   })
+
+  await bundle.close()
 
   console.log(`Building ${plugin} plugin... Done!`)
 }

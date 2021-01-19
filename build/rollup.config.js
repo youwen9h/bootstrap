@@ -37,14 +37,11 @@ const rollupConfig = {
     banner,
     file: path.resolve(__dirname, `../dist/js/${fileDest}.js`),
     format: ESM ? 'esm' : 'umd',
+    name: 'bootstrap',
     globals
   },
   external,
   plugins
-}
-
-if (!ESM) {
-  rollupConfig.output.name = 'bootstrap'
 }
 
 module.exports = rollupConfig
