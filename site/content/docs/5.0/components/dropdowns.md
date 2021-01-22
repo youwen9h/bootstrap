@@ -908,9 +908,9 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     </tr>
     <tr>
       <td><code>popperConfig</code></td>
-      <td>null | object</td>
+      <td>null | object | function</td>
       <td><code>null</code></td>
-      <td>To change Bootstrap's default Popper config, see <a href="https://popper.js.org/docs/v2/constructors/#options">Popper's configuration</a></td>
+      <td>To change Bootstrap's default Popper config, see <a href="https://popper.js.org/docs/v2/constructors/#options">Popper's configuration</a>. If you pass the <code>popperConfig</code> as a function, it accepts the Bootstrap's default Popper config as an argument, you need to return the configuration from this function as an object.</td>
     </tr>
   </tbody>
 </table>
