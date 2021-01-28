@@ -154,6 +154,22 @@ class Carousel extends BaseComponent {
     }
   }
 
+  right() {
+    if (isRTL) {
+      this.prev()
+    } else {
+      this.next()
+    }
+  }
+
+  left() {
+    if (isRTL) {
+      this.next()
+    } else {
+      this.prev()
+    }
+  }
+
   pause(event) {
     if (!event) {
       this._isPaused = true
@@ -249,22 +265,12 @@ class Carousel extends BaseComponent {
 
     this.touchDeltaX = 0
 
-    // swipe left
     if (direction > 0) {
-      if (isRTL) {
-        this.next()
-      } else {
-        this.prev()
-      }
+      this.left()
     }
 
-    // swipe right
     if (direction < 0) {
-      if (isRTL) {
-        this.prev()
-      } else {
-        this.next()
-      }
+      this.right()
     }
   }
 
@@ -348,18 +354,10 @@ class Carousel extends BaseComponent {
 
     if (event.key === ARROW_LEFT_KEY) {
       event.preventDefault()
-      if (isRTL) {
-        this.next()
-      } else {
-        this.prev()
-      }
+      this.left()
     } else if (event.key === ARROW_RIGHT_KEY) {
       event.preventDefault()
-      if (isRTL) {
-        this.prev()
-      } else {
-        this.next()
-      }
+      this.right()
     }
   }
 
