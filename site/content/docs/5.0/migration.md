@@ -22,6 +22,7 @@ toc: true
 
 - Restored `offset` option for Dropdown, Popover and Tooltip plugins.
 - The default value for the `fallbackPlacements` is changed to `['top', 'right', 'bottom', 'left']` for better placement of popper elements.
+- `popperConfig` can be passed as a function that accepts the Bootstrap's default Popper config as an argument, so that you can merge this default configuration in your way.
 
 ## v5.0.0-beta1
 
